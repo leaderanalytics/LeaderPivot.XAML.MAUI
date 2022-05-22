@@ -1,8 +1,7 @@
 ﻿<maui:MauiWinUIApplication
-    x:Class="LeaderPivot.XAML.MAUI.Host.WinUI.App"
+    x:Class="LeaderAnalytics.LeaderPivot.XAML.MAUI.Host.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:maui="using:Microsoft.Maui"
-    xmlns:local="using:LeaderPivot.XAML.MAUI.Host.WinUI">
-
+    xmlns:local="using:LeaderAnalytics.LeaderPivot.XAML.MAUI.Host.WinUI">
 </maui:MauiWinUIApplication>

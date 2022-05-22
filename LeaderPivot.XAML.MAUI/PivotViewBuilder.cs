@@ -84,7 +84,7 @@ public abstract class PivotViewBuilder : INotifyPropertyChanged
         protected set
         {
             SetProp(ref _HiddenDimensions, value);
-            RaisePropertyChanged(nameof(HiddenDimensionsVisibility));
+            RaisePropertyChanged(nameof(IsHiddenDimensionsVisible));
         }
     }
 
@@ -102,7 +102,7 @@ public abstract class PivotViewBuilder : INotifyPropertyChanged
         protected set => SetProp(ref _Matrix, value);
     }
 
-    public Visibility HiddenDimensionsVisibility => (HiddenDimensions?.Any() ?? false) ? Visibility.Visible : Visibility.Collapsed;
+    public Boolean IsHiddenDimensionsVisible => HiddenDimensions?.Any() ?? false ;
 
     public abstract Task BuildMatrix(string? nodeID);
 

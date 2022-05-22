@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace LeaderAnalytics.LeaderPivot.XAML.MAUI;
 
-public class DropDownButton : ContentPage, INotifyPropertyChanged
+public class DropDownButton : ContentView, INotifyPropertyChanged
 {
     #region BindableProperties
     public ICommand Command
