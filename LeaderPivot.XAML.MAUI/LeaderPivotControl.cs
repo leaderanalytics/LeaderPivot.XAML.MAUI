@@ -8,7 +8,7 @@
 
 namespace LeaderAnalytics.LeaderPivot.XAML.MAUI;
 
-public class LeaderPivotControl : ContentPage
+public class LeaderPivotControl : ContentView
 {
     #region Properties
     public PivotViewBuilder ViewBuilder
@@ -234,6 +234,18 @@ public class LeaderPivotControl : ContentPage
 
     public static readonly BindableProperty MeasureCheckboxStyleProperty =
         BindableProperty.Create("MeasureCheckboxStyle", typeof(Style), typeof(LeaderPivotControl), null);
+
+
+    public double FontSize
+    {
+        get { return (double)GetValue(FontSizeProperty); }
+        set { SetValue(FontSizeProperty, value); }
+    }
+    public static readonly BindableProperty FontSizeProperty =
+        BindableProperty.Create("FontSize", typeof(double), typeof(LeaderPivotControl), 12);
+
+
+
 
     #endregion
 

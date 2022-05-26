@@ -1,41 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LeaderAnalytics.LeaderPivot.XAML.MAUI.Host"
+             xmlns:leaderpivot="clr-namespace:LeaderAnalytics.LeaderPivot.XAML.MAUI;assembly=LeaderAnalytics.LeaderPivot.XAML.MAUI"
              x:Class="LeaderAnalytics.LeaderPivot.XAML.MAUI.Host.MainPage">
-			 
-    <ScrollView>
-        <VerticalStackLayout 
-            Spacing="25" 
-            Padding="30,0" 
-            VerticalOptions="Center">
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-                
-            <Label 
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+    
+    <Grid Background="CornflowerBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <local:ControlPanel x:Name="controlPanel"/>
+
+        <Border Grid.Row="1" Style="{StaticResource BorderStoryboardStyle}" >
+            <VerticalStackLayout>
             
-            <Label 
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button 
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
-        </VerticalStackLayout>
-    </ScrollView>
- 
+                    <VerticalStackLayout  Margin="16">
+                        <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                        HorizontalOptions="Center" Margin="50,16,50,16" />
+                        <Label Text="Working..."/>
+                    </VerticalStackLayout>
+            
+                <leaderpivot:LeaderPivotControl BorderThickness="6" BorderColor="Silver" Margin="20"
+                    DisplayGrandTotalOption="{Binding Source={x:Reference controlPanel}, Path=DisplayGrandTotalOption}"
+                    DisplayDimensionButtons="{Binding Source={x:Reference controlPanel}, Path=DisplayDimensionButtons}"
+                    DisplayMeasureSelectors="{Binding Source={x:Reference controlPanel}, Path=DisplayMeasureSelectors}"
+                    DisplayReloadDataButton="{Binding Source={x:Reference controlPanel}, Path=DisplayReloadDataButton}"
+                                                
+                    FontSize="{Binding Source={x:Reference controlPanel}, Path=PivotControlFontSize}"
+                    CellPadding="{Binding Source={x:Reference controlPanel}, Path=CellPadding}"
+                    ViewBuilder="{Binding ViewBuilder}"
+                    IsBusy="{Binding IsBusy}"/>
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
 </ContentPage>

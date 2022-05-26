@@ -1,7 +1,6 @@
-﻿//using CommunityToolkit.Maui;
-//using CommunityToolkit.Maui.Core;
-//using CommunityToolkit.Maui.Markup;
-
+﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Maui.Markup;
 
 namespace LeaderAnalytics.LeaderPivot.XAML.MAUI.Host;
 
@@ -12,7 +11,8 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
-            
+            .UseMauiCommunityToolkit()
+            .UseMauiCommunityToolkitMarkup()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -22,6 +22,3 @@ public static class MauiProgram
         return builder.Build();
     }
 }
-//.UseMauiCommunityToolkitCore()
-//.UseMauiCommunityToolkit()
-//.UseMauiCommunityToolkitMarkup()

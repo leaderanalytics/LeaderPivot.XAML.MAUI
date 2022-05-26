@@ -1,0 +1,105 @@
+﻿<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          x:Class="LeaderPivot.XAML.WPF.Host.ControlPanel"
+          xmlns:local="clr-namespace:LeaderPivot.XAML.WPF.Host"
+          xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"   
+          xmlns:converters="clr-namespace:LeaderAnalytics.LeaderPivot.XAML.MAUI.Converters;assembly=LeaderAnalytics.LeaderPivot.XAML.MAUI"
+          xmlns:Behaviors="http://schemas.microsoft.com/xaml/behaviors">
+    <ContentView.Resources>
+        <converters:NegateConverter x:Key="NegateConverter"/>
+    </ContentView.Resources>
+    
+    <Grid BindingContext="{Binding Source={RelativeSource AncestorType={x:Type local:ControlPanel}}}" VerticalOptions="Start" Background="Cornsilk" >
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignUserForegroundCheckBox}">
+                <Setter Property="Margin" Value="0,0,20,0"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="StackPanel">
+                <Setter Property="Margin" Value="0,10,0,0"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Orientation" Value="Horizontal"/>
+            </Style>
+            
+        </Grid.Resources>
+        <Label Text="Sales Data" Grid.RowSpan="2" FontSize="30" Margin="20"></Label>
+        <HorizontalStackLayout Grid.Column="1" IsVisible="{Binding PanelVisibility}">
+            <HorizontalStackLayout>
+                <CheckBox IsChecked="{Binding DisplayGrandTotalOption}"/>
+                <Label Text="Grand Totals Option"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <CheckBox IsChecked="{Binding DisplayDimensionButtons}"/>
+                <Label Text="Dimension Buttons"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <CheckBox IsChecked="{Binding DisplayMeasureSelectors}"/>
+                <Label Text="Measure Selectors"/>
+            </HorizontalStackLayout>
+            
+            <HorizontalStackLayout>
+                <CheckBox IsChecked="{Binding DisplayReloadDataButton}"/>
+                <Label Text="Reload Data Button"/>
+            </HorizontalStackLayout>
+            
+            <HorizontalStackLayout VerticalOptions="Center" Margin="0">
+                <Label Text="Theme:" Margin="0,2,6,0" VerticalOptions="Center" />
+                <Picker Width="120" VerticalOptions="Center">
+                    <Picker.Behaviors>
+                        <toolkit:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding SelectedThemeChangedCommand}" />
+                        
+                    </Picker.Behaviors>
+                    <Picker.Items>
+                        <x:String>Primary</x:String>
+                        <x:String>Light</x:String>
+                        <x:String>Secondary</x:String>
+                        <x:String>Dark</x:String>
+                    </Picker.Items>
+                </Picker>
+            </HorizontalStackLayout>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Grid.Column="1" Grid.Row="2" IsVisible="{Binding PanelVisibility}" >
+            <HorizontalStackLayout Margin="0">
+                <Label Text="{Binding FontSizeString}" VerticalOptions="Center"/>
+                <Slider Value="{Binding PivotControlFontSize}" Minimum="6" Maximum="20" Width="200" VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Margin="0">
+                <Label Text="{Binding CellPaddingString}" VerticalOptions="Center"/>
+                <Slider Value="{Binding CellPadding}" Minimum="0" Maximum="10" Width="200" VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+        </HorizontalStackLayout>
+        <Button 
+            Grid.RowSpan="2" Grid.Column="2" 
+            VerticalOptions="Center" HorizontalOptions="Center" 
+            Margin="20" Padding="6" 
+            Command="">
+            <Button.Shadow>
+                <Shadow Radius="10" Brush="DarkGray" Opacity=".6" />
+            </Button.Shadow>
+        </Button>
+        <VerticalStackLayout>
+            <HorizontalStackLayout IsVisible="{Binding PanelVisibility}">
+                <Label FontFamily="Segoe MDL2 Assets" Text="&#xEB11;" />
+                <Label Text="Controls" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout IsVisible="{Binding PanelVisibility, Converter={StaticResource NegateConverter}}">
+                <Label FontFamily="Segoe MDL2 Assets" Text="&#xEB0F;" />
+                <Label Text="Controls" />
+            </HorizontalStackLayout>
+            <VerticalStackLayout.GestureRecognizers>
+                <ClickGestureRecognizer Command="{Binding TogglePanelVisibilityCommand}"/>
+            </VerticalStackLayout.GestureRecognizers>
+        </VerticalStackLayout>
+    </Grid>
+</ContentView>
