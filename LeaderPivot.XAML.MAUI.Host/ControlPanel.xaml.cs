@@ -10,7 +10,7 @@ using System.Windows.Input;
 using System.Drawing;
 using CommunityToolkit.Mvvm.Input;
 
-namespace LeaderPivot.XAML.MAUI.Host;
+namespace LeaderAnalytics.LeaderPivot.XAML.MAUI.Host;
 
 public partial class ControlPanel : ContentView, INotifyPropertyChanged
 {

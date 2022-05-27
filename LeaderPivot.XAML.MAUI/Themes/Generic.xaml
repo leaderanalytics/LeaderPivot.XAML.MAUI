@@ -2,8 +2,6 @@
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="LeaderAnalytics.LeaderPivot.XAML.MAUI.Themes.Generic"
-    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:local="clr-namespace:LeaderAnalytics.LeaderPivot.XAML.MAUI"
     xmlns:converters="clr-namespace:LeaderAnalytics.LeaderPivot.XAML.MAUI.Converters">
@@ -242,10 +240,10 @@
                                                 <CheckBox IsChecked="{Binding IsEnabled}" 
                                                           Style="{Binding Source={RelativeSource AncestorType={x:Type local:MeasureContainerCell}}, Path=MeasureCheckBoxStyle}">
                                                     <CheckBox.Behaviors>
-                                                        <toolkit:EventToCommandBehavior 
+                                                        <local:EventToCommandBehavior 
                                                             EventName="CheckedChanged" 
                                                             Command="{Binding Source={RelativeSource AncestorType={x:Type local:LeaderPivotControl}}, Path=ReloadDataCommand}" >
-                                                        </toolkit:EventToCommandBehavior>
+                                                        </local:EventToCommandBehavior>
                                                     </CheckBox.Behaviors>
                                                 </CheckBox>
                                                 <Label Text="{Binding DisplayValue}"/>
@@ -260,10 +258,10 @@
                                               Style="{TemplateBinding MeasureCheckBoxStyle}"
                                               Grid.Row="2" >
                                         <CheckBox.Behaviors>
-                                            <toolkit:EventToCommandBehavior 
+                                            <local:EventToCommandBehavior 
                                                             EventName="CheckedChanged" 
                                                             Command="{Binding ReloadDataCommand}" >
-                                            </toolkit:EventToCommandBehavior>
+                                            </local:EventToCommandBehavior>
                                         </CheckBox.Behaviors>
                                     </CheckBox>
                                     <Label Text="Grand Totals"/>
@@ -282,8 +280,8 @@
                                           SelectedItem="{x:Null}">
 
                                     <Picker.Behaviors>
-                                        <toolkit:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding DimensionEventCommand}">
-                                            <toolkit:EventToCommandBehavior.CommandParameter>
+                                        <local:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding DimensionEventCommand}">
+                                            <local:EventToCommandBehavior.CommandParameter>
                                                 <MultiBinding Converter="{StaticResource DimensionEventArgsConverter}">
                                                     <Binding Source="{x:Reference HiddenDimensionsComboBox}" Path="SelectedItem" />
                                                     <Binding >
@@ -292,8 +290,8 @@
                                                         </Binding.Source>
                                                     </Binding>
                                                 </MultiBinding>
-                                            </toolkit:EventToCommandBehavior.CommandParameter>
-                                        </toolkit:EventToCommandBehavior>
+                                            </local:EventToCommandBehavior.CommandParameter>
+                                        </local:EventToCommandBehavior>
                                     </Picker.Behaviors>
                                 </Picker>
                             </Grid>
@@ -312,11 +310,11 @@
                     HorizontalOptions="Start" 
                     VerticalOptions="Center">
                     <CheckBox.Behaviors>
-                        <toolkit:EventToCommandBehavior
+                        <local:EventToCommandBehavior
                             EventName="CheckedChanged"
                             Command="{Binding Source={RelativeSource AncestorType={x:Type local:DimensionButton}}, Path=CheckboxCheckedCommand}"
                             CommandParameter="{Binding Source={RelativeSource TemplatedParent}, Path=Content}">
-                        </toolkit:EventToCommandBehavior>
+                        </local:EventToCommandBehavior>
                     </CheckBox.Behaviors>
 
                     <CheckBox.IsChecked>
@@ -383,10 +381,10 @@
                             </x:Array>
                         </local:DropDownButton.ItemsSource>
                         <local:DropDownButton.Behaviors>
-                            <toolkit:EventToCommandBehavior 
+                            <local:EventToCommandBehavior 
                                 EventName="SelectionChanged"
                                 Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding CommandParameter}">
-                            </toolkit:EventToCommandBehavior>
+                            </local:EventToCommandBehavior>
                         </local:DropDownButton.Behaviors>
                     </local:DropDownButton>
                 </ControlTemplate>
@@ -426,10 +424,10 @@
                             </Style>
                         </VerticalStackLayout.Resources>
                         <VerticalStackLayout.Behaviors>
-                            <toolkit:EventToCommandBehavior 
+                            <local:EventToCommandBehavior 
                                 EventName="MouseLeave"
                                 Command="{Binding MouseLeaveCommand}">
-                            </toolkit:EventToCommandBehavior>
+                            </local:EventToCommandBehavior>
                         </VerticalStackLayout.Behaviors>
                         
                         <Button x:Name="MartyMcButton" Style="{TemplateBinding ButtonStyle}" Text="{TemplateBinding Content}" Command="{Binding ToggleDropDownCommand}"></Button>
@@ -443,7 +441,7 @@
                                          ItemTemplate="{Binding ItemTemplate}" 
                                          Style="{TemplateBinding ListBoxStyle}">
                                 <ListView.Behaviors>
-                                    <toolkit:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding SelectionChangedCommand}"/>
+                                    <local:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding SelectionChangedCommand}"/>
                                 </ListView.Behaviors>
                                 </ListView>
                             </Border>

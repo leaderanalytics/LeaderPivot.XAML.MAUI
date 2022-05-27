@@ -5,9 +5,6 @@
  * 
  * Please do not remove this header.
  */
-
-using CommunityToolkit.Maui.Alerts;
-
 namespace LeaderAnalytics.LeaderPivot.XAML.MAUI;
 
 public class LeaderPivotControl : ContentView
@@ -283,7 +280,6 @@ public class LeaderPivotControl : ContentView
 
     public LeaderPivotControl()
     {
-        Snackbar z = new Snackbar();
         ReloadDataCommand = new AsyncRelayCommand(() => BuildGrid(null));
         DimensionEventCommand = new AsyncRelayCommand<DimensionEventArgs>(DimensionEventCommandHandler);
         toggleNodeExpansionCommand = new AsyncRelayCommand<string>(x => BuildGrid(x));

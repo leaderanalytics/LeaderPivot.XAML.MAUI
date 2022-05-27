@@ -23,7 +23,7 @@
                         <Label Text="Working..."/>
                     </VerticalStackLayout>
             
-                <leaderpivot:LeaderPivotControl BorderThickness="6" BorderColor="Silver" Margin="20"
+                <leaderpivot:LeaderPivotControl   Margin="20"
                     DisplayGrandTotalOption="{Binding Source={x:Reference controlPanel}, Path=DisplayGrandTotalOption}"
                     DisplayDimensionButtons="{Binding Source={x:Reference controlPanel}, Path=DisplayDimensionButtons}"
                     DisplayMeasureSelectors="{Binding Source={x:Reference controlPanel}, Path=DisplayMeasureSelectors}"

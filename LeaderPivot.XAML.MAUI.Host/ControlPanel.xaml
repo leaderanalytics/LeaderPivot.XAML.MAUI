@@ -1,8 +1,8 @@
 ﻿<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-          x:Class="LeaderPivot.XAML.WPF.Host.ControlPanel"
-          xmlns:local="clr-namespace:LeaderPivot.XAML.WPF.Host"
-          xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"   
+          x:Class="LeaderAnalytics.LeaderPivot.XAML.WPF.Host.ControlPanel"
+          xmlns:local="clr-namespace:LeaderAnalytics.LeaderPivot.XAML.WPF.Host"
+          xmlns:control="clr-namespace:LeaderAnalytics.LeaderPivot.XAML.MAUI;assembly=LeaderAnalytics.LeaderPivot.XAML.MAUI"
           xmlns:converters="clr-namespace:LeaderAnalytics.LeaderPivot.XAML.MAUI.Converters;assembly=LeaderAnalytics.LeaderPivot.XAML.MAUI"
           xmlns:Behaviors="http://schemas.microsoft.com/xaml/behaviors">
     <ContentView.Resources>
@@ -22,12 +22,11 @@
         <Grid.Resources>
             <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignUserForegroundCheckBox}">
                 <Setter Property="Margin" Value="0,0,20,0"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
-            <Style TargetType="StackPanel">
+            <Style TargetType="VerticalStackLayout">
                 <Setter Property="Margin" Value="0,10,0,0"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
-                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
             </Style>
             
         </Grid.Resources>
@@ -57,7 +56,7 @@
                 <Label Text="Theme:" Margin="0,2,6,0" VerticalOptions="Center" />
                 <Picker Width="120" VerticalOptions="Center">
                     <Picker.Behaviors>
-                        <toolkit:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding SelectedThemeChangedCommand}" />
+                        <control:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding SelectedThemeChangedCommand}" />
                         
                     </Picker.Behaviors>
                     <Picker.Items>
@@ -79,15 +78,7 @@
                 <Slider Value="{Binding CellPadding}" Minimum="0" Maximum="10" Width="200" VerticalOptions="Center"/>
             </HorizontalStackLayout>
         </HorizontalStackLayout>
-        <Button 
-            Grid.RowSpan="2" Grid.Column="2" 
-            VerticalOptions="Center" HorizontalOptions="Center" 
-            Margin="20" Padding="6" 
-            Command="">
-            <Button.Shadow>
-                <Shadow Radius="10" Brush="DarkGray" Opacity=".6" />
-            </Button.Shadow>
-        </Button>
+        
         <VerticalStackLayout>
             <HorizontalStackLayout IsVisible="{Binding PanelVisibility}">
                 <Label FontFamily="Segoe MDL2 Assets" Text="&#xEB11;" />
@@ -100,6 +91,9 @@
             <VerticalStackLayout.GestureRecognizers>
                 <ClickGestureRecognizer Command="{Binding TogglePanelVisibilityCommand}"/>
             </VerticalStackLayout.GestureRecognizers>
+            <VerticalStackLayout.Shadow>
+                <Shadow Radius="10" Brush="DarkGray" Opacity=".6" />    
+            </VerticalStackLayout.Shadow>
         </VerticalStackLayout>
     </Grid>
 </ContentView>
